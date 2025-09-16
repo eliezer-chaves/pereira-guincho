@@ -1,59 +1,70 @@
-# PereiraGuinchoAngular
+# Pereira Guincho Taubaté
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.15.
+Este repositório contém a página de destino (landing page) do Auto Socorro Pereira, um serviço de guincho 24 horas em Taubaté e região. O projeto foi desenvolvido com **Angular**, utilizando ferramentas modernas para uma experiência rápida e fluida.
 
-## Development server
+-----
 
-To start a local development server, run:
+### 💻 Tecnologias Utilizadas
 
-```bash
-ng serve
-```
+  * **Angular CLI**: v19.2.15
+  * **HTML5, CSS3, TypeScript**: As linguagens base do projeto.
+  * **Angular Material Icons**: Para ícones de alta qualidade.
+  * **Font Awesome**: Para ícones adicionais, como o ícone do WhatsApp.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+-----
 
-## Code scaffolding
+### 📦 Instalação e Configuração
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Para rodar este projeto localmente, siga os passos abaixo:
 
-```bash
-ng generate component component-name
-```
+1.  **Clone o repositório:**
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+    ```bash
+    git clone https://github.com/seu-usuario/pereira-guincho-angular.git
+    cd pereira-guincho-angular
+    ```
 
-```bash
-ng generate --help
-```
+2.  **Instale as dependências:**
+    Certifique-se de que você tem o Node.js e o npm instalados. Em seguida, execute o comando para instalar todas as dependências do projeto.
 
-## Building
+    ```bash
+    npm install
+    ```
 
-To build the project run:
+3.  **Inicie o servidor de desenvolvimento:**
 
-```bash
-ng build
-```
+    ```bash
+    ng serve
+    ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+    O servidor será iniciado em `http://localhost:4200/`. A aplicação recarregará automaticamente quando você fizer alterações nos arquivos.
 
-## Running unit tests
+-----
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+### 🛠️ Comandos Úteis
 
-```bash
-ng test
-```
+  * **Gerar um novo componente:**
 
-## Running end-to-end tests
+    ```bash
+    ng generate component nome-do-componente
+    ```
 
-For end-to-end (e2e) testing, run:
+  * **Compilar para produção:**
 
-```bash
-ng e2e
-```
+    ```bash
+    ng build
+    ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+    O build otimizado para produção será gerado na pasta `dist/`.
 
-## Additional Resources
+  * **Rodar testes:**
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+    ```bash
+    ng test
+    ```
+
+-----
+
+### 🔗 Site Oficial
+
+Você pode visitar a versão online da landing page em: **[https://www.pereiraguinchotaubate.com.br/](https://www.pereiraguinchotaubate.com.br/)**
