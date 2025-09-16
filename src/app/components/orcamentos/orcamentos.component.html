@@ -1,0 +1,85 @@
+<section id="orcamentos" class="orcamento">
+  <div class="orcamento-inner">
+    <header class="orcamento-header">
+      <h2 class="orcamento-title">Solicite um <span>Orçamento</span></h2>
+      <p class="orcamento-subtitle">Preencha o formulário abaixo e receba seu orçamento via WhatsApp em
+        segundos!</p>
+    </header>
+
+    <div class="orcamento-grid">
+      <div class="form-card">
+        <h3 class="form-title">Formulário de Orçamento</h3>
+
+        <form #budgetForm="ngForm" class="budget-form">
+          <label class="field-label">Nome Completo *</label>
+          <input name="name" type="text" placeholder="Seu nome" required ngModel>
+
+          <label class="field-label">Telefone/WhatsApp *</label>
+          <input name="phone" type="text" placeholder="(12) 99999-9999" required ngModel>
+
+          <label class="field-label">Local do Atendimento *</label>
+          <input name="location" type="text" placeholder="Endereço ou ponto de referência" required ngModel>
+
+          <label class="field-label">Tipo de Veículo *</label>
+          <input name="vehicle" type="text" placeholder="Ex: Carro, Moto, Caminhonete" required ngModel>
+
+          <label class="field-label">Descrição do Problema</label>
+          <textarea name="message" placeholder="Descreva brevemente o que aconteceu (pane, acidente, etc.)" ngModel></textarea>
+
+          <button (click)="handleForm(budgetForm)" type="button" class="btn btn-whatsapp">
+            <span class="material-icons"><i class="fa-brands fa-whatsapp"></i></span>
+            Enviar Orçamento via WhatsApp
+          </button>
+        </form>
+      </div>
+
+      <aside class="info-column">
+        <div class="emergency-card">
+          <div class="emergency-head">
+            <span class="material-icons phone-icon">call</span>
+            <h4>Precisa de Ajuda Agora?</h4>
+          </div>
+          <p class="emergency-text">Situações de emergência não esperam! Ligue agora e tenha atendimento
+            imediato.</p>
+
+          <a class="phone-pill" href="#" (click)="onCallClick()">
+            <span class="material-icons">call</span>
+            {{phone}}
+          </a>
+        </div>
+
+        <ul class="benefit-list">
+          <li>
+            <span class="benefit-icon time">
+              <span class="material-icons">access_time</span>
+            </span>
+            <div class="benefit-text">
+              <strong>Atendimento 24 Horas</strong>
+              <p>Funcionamos todos os dias, 24 horas por dia. Sua emergência não tem hora!</p>
+            </div>
+          </li>
+
+          <li>
+            <span class="benefit-icon place">
+              <span class="material-icons">place</span>
+            </span>
+            <div class="benefit-text">
+              <strong>Cobertura Total em Taubaté</strong>
+              <p>Atendemos toda Taubaté e região com tempo de resposta rápido.</p>
+            </div>
+          </li>
+
+          <li>
+            <span class="benefit-icon check">
+              <span class="material-icons">verified</span>
+            </span>
+            <div class="benefit-text">
+              <strong>Orçamento Gratuito</strong>
+              <p>Não cobramos pela avaliação. Você só paga pelo serviço aprovado.</p>
+            </div>
+          </li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,215 @@
+.dados-empresariais {
+  padding: 60px 16px;
+  background: var(--gray-light);
+}
+
+.dados-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.dados-title {
+  font-weight: 800;
+  font-size: clamp(32px, 4.6vw, 48px);
+  margin-bottom: 8px;
+  line-height: 1;
+}
+
+.dados-title span {
+  color: var(--red);
+}
+
+.dados-subtitle {
+  color: var(--gray-medium);
+  font-size: 20px;
+  line-height: 1.5;
+}
+
+.dados-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+@media (min-width: 992px) {
+  .dados-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .dados-map {
+    grid-column: 1 / 3;
+  }
+}
+
+.dados-map h3,
+.dados-info h3,
+.dados-cobertura h3 {
+  font-size: 24px;
+  color: var(--black);
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.map-container {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+}
+
+.map-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--gray-medium);
+  font-size: 14px;
+}
+
+.map-info .material-icons {
+  color: var(--red);
+}
+
+.info-card,
+.cobertura-card {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--gray-light);
+}
+
+.info-item:last-child {
+  border-bottom: none;
+}
+
+.info-item .material-icons {
+  color: var(--red);
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.info-item strong {
+  display: block;
+  color: var(--black);
+  margin-bottom: 4px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.info-item p,
+.info-item a {
+  color: var(--gray-medium);
+  text-decoration: none;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.info-item a:hover {
+  color: var(--red);
+}
+
+.cobertura-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.cobertura-item:last-child {
+  margin-bottom: 0;
+}
+
+.cobertura-item .material-icons {
+  color: var(--red);
+  font-size: 24px;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.cobertura-item strong {
+  display: block;
+  color: var(--black);
+  margin-bottom: 8px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.cobertura-item ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.cobertura-item li {
+  color: var(--gray-medium);
+  padding: 4px 0;
+  font-size: 14px;
+  position: relative;
+  padding-left: 15px;
+}
+
+.cobertura-item li:before {
+  content: "•";
+  color: var(--red);
+  position: absolute;
+  left: 0;
+}
+
+/* Certificações */
+.certificacoes {
+  margin-top: 40px;
+}
+
+.certificacoes h3 {
+  text-align: center;
+  font-size: 28px;
+  color: var(--black);
+  margin-bottom: 30px;
+  font-weight: 700;
+}
+
+.certificacoes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.certificacao-item {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 25px 20px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+}
+
+.certificacao-item:hover {
+  transform: translateY(-5px);
+}
+
+.certificacao-item .material-icons {
+  font-size: 40px;
+  color: var(--red);
+  margin-bottom: 15px;
+}
+
+.certificacao-item h4 {
+  font-size: 18px;
+  color: var(--black);
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.certificacao-item p {
+  color: var(--gray-medium);
+  font-size: 14px;
+  line-height: 1.5;
+}

@@ -1,0 +1,136 @@
+
+/* ===== Seção Serviços ===== */
+.services {
+  text-align: center;
+  padding: 20px 16px;
+}
+
+.services-title {
+  font-weight: 800;
+  font-size: clamp(32px, 4.6vw, 48px);
+  margin-bottom: 6px;
+  line-height: 1;
+  text-align: center;
+}
+
+.services-title span {
+  color: #e53935;
+}
+
+.services-subtitle {
+  color: var(--gray-medium);
+  font-size: 20px;
+  line-height: 1.5;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+/* Grid de cards */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-bottom: 50px;
+}
+
+.service-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 25px 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+.service-card span.material-icons {
+  font-size: 40px;
+  color: #e53935;
+  background: #ffeaea;
+  padding: 12px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+.service-card h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #222;
+}
+
+.service-card p {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* CTA final */
+.services-cta {
+  background: #fff;
+  border-radius: 12px;
+  padding: 30px 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.services-cta h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #222;
+}
+
+.services-cta p {
+  font-size: 15px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  max-width: 600px;
+  gap: 6px;
+}
+
+.cta-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 12px 22px;
+  border-radius: 90px;
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  transition: background 0.3s ease;
+  color: #fff;
+  cursor: pointer;
+}
+
+.cta-button.call {
+  background: var(--red);
+  min-width: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cta-button.call:hover {
+  background: var(--red-hover);
+}
+
+.cta-button.whatsapp {
+     min-width: 250px;
+  background: #25d366; /* verde WhatsApp */
+}
+
+.cta-button.whatsapp:hover {
+  background: #1ebf5b;
+}

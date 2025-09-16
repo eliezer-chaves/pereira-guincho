@@ -1,0 +1,22 @@
+<div id="page-loader" class="page-loader" *ngIf="visible">
+  <div class="loader-container">
+    <div class="loader-content">
+      <div class="loader-logo">
+        <div class="logo-icon">
+          <span class="material-icons">directions_car</span>
+        </div>
+        <span class="logo-text">Auto Socorro Pereira</span>
+      </div>
+
+      <div class="progress-container">
+        <div class="progress-bar">
+          <div class="progress-fill" [style.width.%]="progress"></div>
+        </div>
+        <div class="progress-text">
+          <span class="percent">{{ progress }}%</span>
+          <span class="loading-text"> Carregando...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

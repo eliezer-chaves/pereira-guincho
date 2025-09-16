@@ -1,0 +1,81 @@
+.floating-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #25d366 0%, #00d757 100%);
+  color: #fff;
+  border-radius: 50px;
+  height: 50px;
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(0, 212, 87, 0.4);
+  transition: width 0.3s ease, padding-right 0.3s ease; /* Transição para a largura */
+  z-index: 9999;
+  overflow: hidden;
+  font-weight: 600;
+  font-family: sans-serif;
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  animation: float 3s ease-in-out infinite 0.5s;
+  width: 50px;
+  cursor: pointer;
+}
+
+.floating-btn .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  font-size: 24px;
+  flex-shrink: 0;
+  
+}
+
+.floating-btn .btn-text {
+  margin-left: 0; /* Começa sem margem */
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease, margin-left 0.3s ease;
+}
+
+/* Hover - expandir texto */
+.floating-btn:hover {
+  width: fit-content; /* Defina uma largura fixa para a transição */
+  padding-right: 20px;
+}
+
+.floating-btn:hover .btn-text {
+  opacity: 1;
+  margin-left: 10px; /* Adiciona a margem no hover */
+}
+
+/* Animação flutuante */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Responsivo para mobile */
+@media (max-width: 768px) {
+  .floating-btn {
+    bottom: 15px;
+    right: 15px;
+    height: 45px;
+    width: 45px;
+  }
+
+  .floating-btn .icon {
+    width: 45px;
+    font-size: 20px;
+  }
+
+  .floating-btn:hover {
+    width: 45px; /* Ajuste a largura para mobile */
+  }
+}

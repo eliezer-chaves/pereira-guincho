@@ -1,0 +1,142 @@
+<section id="dados-empresariais" class="section dados-empresariais">
+    <div class="dados-container">
+        <header class="dados-header">
+            <h2 class="dados-title">Nossos <span>Dados Empresariais</span></h2>
+            <p class="dados-subtitle">Informações completas para seu conhecimento e confiança</p>
+        </header>
+
+        <div class="dados-grid">
+            <!-- Mapa -->
+            <div class="dados-map">
+                <h3>Nossa Localização</h3>
+                <div class="map-container">
+
+
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d6644.695816146335!2d-45.558291!3d-23.048949!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ccf9ecfb9e14bb%3A0x2442d3f0a36a09f9!2sAutosocorro%20Pereira%20Assist%C3%AAncia!5e1!3m2!1spt-BR!2sbr!4v1757531954802!5m2!1spt-BR!2sbr"
+                        width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+                <div class="map-info">
+                    <p><span class="material-icons">place</span> Atendemos toda Taubaté e região</p>
+                </div>
+            </div>
+
+            <div class="dados-info">
+                <h3>Informações da Empresa</h3>
+                <div class="info-card">
+                    <div class="info-item">
+                        <span class="material-icons">business</span>
+                        <div>
+                            <strong>Razão Social</strong>
+                            <p>{{company}}</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <span class="material-icons">badge</span>
+                        <div>
+                            <strong>CNPJ</strong>
+                            <p>{{cnpj}}</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <span class="material-icons">home</span>
+                        <div>
+                            <strong>Endereço Principal</strong>
+                            <p>{{primaryStreet}}<br>
+                                {{primaryNeighborhood}}<br>
+                                {{primaryCity}}<br>
+                                {{primaryZipCode}}</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <span class="material-icons">home</span>
+                        <div>
+                            <strong>Endereço Secundário</strong>
+                            <p>{{secondaryStreet}}<br>
+                                {{secondaryNeighborhood}}<br>
+                                {{secondaryCity}}<br>
+                                {{secondaryZipCode}}</p>
+                        </div>
+                    </div>
+
+
+                    <div class="info-item">
+                        <span class="material-icons">phone</span>
+                        <div>
+                            <strong>Telefone</strong>
+                            <p><a href="#"(click)="onCallClick()">{{phone}}</a></p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <span class="material-icons">email</span>
+                        <div>
+                            <strong>E-mail</strong>
+                            <p style="cursor: pointer;"><a (click)="onEmailClick()">{{email}}</a></p>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+
+            <div class="dados-cobertura">
+                <h3>Área de Cobertura</h3>
+                <div class="cobertura-card">
+                    <div class="cobertura-item">
+                        <span class="material-icons">location_city</span>
+                        <div>
+                            <strong>Cidades Atendidas</strong>
+                            <ul>
+                                <li>Taubaté</li>
+                                <li>Pindamonhangaba</li>
+                                <li>Tremembé</li>
+                                <li>Caçapava</li>
+                                <li>Jacareí</li>
+                                <li>São José dos Campos</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="cobertura-item">
+                        <span class="material-icons">directions_car</span>
+                        <div>
+                            <strong>Tipos de Veículo</strong>
+                            <ul>
+                                <li>Carros de passeio</li>
+                                <li>Motos e scooters</li>
+                                <li>Caminhões Leves</li>
+                                <li>Vans</li>
+                                <li>Veículos comerciais leves</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="certificacoes">
+            <h3>Certificações e Garantias</h3>
+            <div class="certificacoes-grid">
+                <div class="certificacao-item">
+                    <span class="material-icons">verified</span>
+                    <h4>Empresa Legalizada</h4>
+                    <p>CNPJ regular perante os órgãos competentes</p>
+                </div>
+
+                <div class="certificacao-item">
+                    <span class="material-icons">security</span>
+                    <h4>Seguro Total</h4>
+                    <p>Todos os serviços segurados contra imprevistos</p>
+                </div>
+
+                <div class="certificacao-item">
+                    <span class="material-icons">thumb_up</span>
+                    <h4>Qualidade Garantida</h4>
+                    <p>Serviços prestados com excelência e compromisso</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

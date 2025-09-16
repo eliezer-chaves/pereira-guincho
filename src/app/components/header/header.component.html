@@ -1,0 +1,25 @@
+<header class="site-header" [class.scrolled]="isScrolled">
+    <div class="header-container">
+        <div class="header-logo">
+            <img src="assets/img/logo-sem-texto.webp" alt="Logo" class="logo-img">
+             <span class="logo-text">Auto Socorro
+                Pereira</span>
+        </div>
+        <button class="menu-toggle" (click)="toggleMenu()" [class.active]="isMenuOpen" aria-label="Abrir menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav class="header-nav" [class.active]="isMenuOpen">
+            <a href="#home" class="nav-link" (click)="scrollToSection($event, 'home')">Início</a>
+            <a href="#avaliacoes" class="nav-link" (click)="scrollToSection($event, 'avaliacoes')">Avaliações</a>
+            <a href="#servicos" class="nav-link" (click)="scrollToSection($event, 'servicos')">Serviços</a>
+            <a href="#diferenciais" class="nav-link" (click)="scrollToSection($event, 'diferenciais')">Diferenciais</a>
+            <a href="#orcamentos" class="nav-link" (click)="scrollToSection($event, 'orcamentos')">Orçamento</a>
+            <a href="#galeria" class="nav-link" (click)="scrollToSection($event, 'galeria')">Galeria</a>
+            <a href="#dados-empresariais" class="nav-link"
+                (click)="scrollToSection($event, 'dados-empresariais')">Empresa</a>
+        </nav>
+    </div>
+</header>
+<div class="menu-overlay" [class.active]="isMenuOpen" (click)="closeMenu()"></div>

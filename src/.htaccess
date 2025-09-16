@@ -1,0 +1,201 @@
+# ========================================
+# ARQUIVO .HTACCESS - AUTO SOCORRO PEREIRA
+# ========================================
+
+# Ativar RewriteEngine
+RewriteEngine On
+
+# ========================================
+# PÁGINAS DE ERRO PERSONALIZADAS
+# ========================================
+ErrorDocument 404 /404.html
+ErrorDocument 403 /404.html
+ErrorDocument 500 /404.html
+
+# ========================================
+# REDIRECIONAMENTOS E URL AMIGÁVEIS
+# ========================================
+
+# Forçar HTTPS (se tiver SSL)
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Forçar WWW (descomente se quiser forçar www)
+# RewriteCond %{HTTP_HOST} !^www\. [NC]
+# RewriteRule ^(.*)$ https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Remover WWW (descomente se quiser remover www)
+# RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+# RewriteRule ^(.*)$ https://%1%{REQUEST_URI} [R=301,L]
+
+# Redirecionar para página principal se acessar diretamente algumas pastas
+RewriteCond %{REQUEST_URI} ^/(assets|pages)/?$
+RewriteRule ^.*$ / [R=301,L]
+
+# ========================================
+# COMPRESSÃO GZIP
+# ========================================
+<IfModule mod_deflate.c>
+    # Comprimir HTML, CSS, JavaScript, XML, JSON
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE application/json
+    AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# ========================================
+# CACHE DO NAVEGADOR
+# ========================================
+<IfModule mod_expires.c>
+    ExpiresActive On
+    
+    # Imagens
+    ExpiresByType image/jpg "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/gif "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/webp "access plus 1 month"
+    ExpiresByType image/svg+xml "access plus 1 month"
+    ExpiresByType image/x-icon "access plus 1 year"
+    
+    # CSS e JavaScript
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/pdf "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType application/x-javascript "access plus 1 month"
+    ExpiresByType text/javascript "access plus 1 month"
+    
+    # Fontes
+    ExpiresByType font/woff "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType application/font-woff "access plus 1 year"
+    ExpiresByType application/font-woff2 "access plus 1 year"
+    
+    # HTML
+    ExpiresByType text/html "access plus 1 day"
+</IfModule>
+
+# ========================================
+# CABEÇALHOS DE CACHE ALTERNATIVOS
+# ========================================
+<IfModule mod_headers.c>
+    # Cache para imagens
+    <filesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|webp|svg)$">
+        Header set Cache-Control "max-age=2592000, public"
+    </filesMatch>
+    
+    # Cache para CSS e JS
+    <filesMatch "\.(css|js)$">
+        Header set Cache-Control "max-age=2592000, public"
+    </filesMatch>
+    
+    # Cache para fontes
+    <filesMatch "\.(woff|woff2|ttf|eot)$">
+        Header set Cache-Control "max-age=31536000, public"
+    </filesMatch>
+</IfModule>
+
+# ========================================
+# SEGURANÇA
+# ========================================
+
+# Ocultar informações do servidor
+ServerSignature Off
+
+# Prevenir acesso a arquivos sensíveis
+<Files ".htaccess">
+    Order Allow,Deny
+    Deny from all
+</Files>
+
+<Files "*.log">
+    Order Allow,Deny
+    Deny from all
+</Files>
+
+<Files "*.bak">
+    Order Allow,Deny
+    Deny from all
+</Files>
+
+# Bloquear acesso a arquivos de configuração
+<FilesMatch "\.(htaccess|htpasswd|ini|log|sh|inc|bak)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Prevenir hotlinking de imagens (opcional)
+# RewriteCond %{HTTP_REFERER} !^$
+# RewriteCond %{HTTP_REFERER} !^https?://(www\.)?seudominio\.com\.br [NC]
+# RewriteRule \.(jpg|jpeg|png|gif|webp)$ - [NC,F,L]
+
+# ========================================
+# TIPOS MIME ADICIONAIS
+# ========================================
+<IfModule mod_mime.c>
+    AddType application/font-woff .woff
+    AddType application/font-woff2 .woff2
+    AddType image/webp .webp
+    AddType image/svg+xml .svg
+</IfModule>
+
+# ========================================
+# OTIMIZAÇÕES PARA HOSTINGER
+# ========================================
+
+# Aumentar limite de upload (se permitido)
+# php_value upload_max_filesize 10M
+# php_value post_max_size 10M
+
+# Definir timezone
+# php_value date.timezone "America/Sao_Paulo"
+
+# ========================================
+# REDIRECIONAMENTOS ESPECÍFICOS
+# ========================================
+
+# Redirecionar páginas antigas (exemplo)
+# Redirect 301 /pagina-antiga.html /
+# Redirect 301 /servicos-antigos/ /#servicos
+
+# Redirecionar para seções específicas da landing page
+RewriteRule ^servicos/?$ /#servicos [R=301,L]
+RewriteRule ^avaliacoes/?$ /#avaliacoes [R=301,L]
+RewriteRule ^orcamento/?$ /#orcamentos [R=301,L]
+RewriteRule ^contato/?$ /#dados-empresariais [R=301,L]
+RewriteRule ^galeria/?$ /#galeria [R=301,L]
+
+# ========================================
+# COMPATIBILIDADE MOBILE
+# ========================================
+<IfModule mod_setenvif.c>
+    SetEnvIfNoCase User-Agent "Mobile" ismobile
+    SetEnvIfNoCase User-Agent "iPhone" ismobile
+    SetEnvIfNoCase User-Agent "Android" ismobile
+</IfModule>
+
+# ========================================
+# PROTEÇÃO CONTRA SPAM E BOTS
+# ========================================
+
+# Bloquear user agents maliciosos (opcional)
+# RewriteCond %{HTTP_USER_AGENT} ^BlackWidow [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^Bot\ mailto:craftbot@yahoo.com [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^ChinaClaw [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^Custo [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^DISCo [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^Download\ Demon [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^eCatch [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^EirGrabber
+# RewriteRule ^.* - [F,L]
+
+# ========================================
+# FIM DO ARQUIVO .HTACCESS
+# ========================================

@@ -1,0 +1,129 @@
+<div class="thank-you-container">
+  <div class="thank-you-card">
+
+    <div class="icon-container">
+      <ng-container [ngSwitch]="type">
+        <span *ngSwitchCase="'call'" class="material-symbols-outlined success-icon">call</span>
+        <i *ngSwitchCase="'whatsapp'" class="fa-brands fa-whatsapp success-icon"></i>
+        <span *ngSwitchCase="'email'" class="material-symbols-outlined success-icon">mail</span>
+        <span *ngSwitchDefault class="material-symbols-outlined success-icon">info</span>
+      </ng-container>
+    </div>
+
+    <h2 class="thank-you-title">
+      <ng-container [ngSwitch]="type">
+        <ng-container *ngSwitchCase="'call'">
+          Ligação <span>Realizada</span>
+        </ng-container>
+        <ng-container *ngSwitchCase="'whatsapp'">
+          WhatsApp <span>Redirecionado</span>
+        </ng-container>
+        <ng-container *ngSwitchCase="'email'">
+          E-mail <span>Enviado</span>
+        </ng-container>
+        <ng-container *ngSwitchDefault>
+          Página <span>Não Encontrada</span>
+        </ng-container>
+      </ng-container>
+    </h2>
+
+    <p class="thank-you-message">
+      <ng-container [ngSwitch]="type">
+        <ng-container *ngSwitchCase="'call'">
+          Nossa equipe está <span>atendendo sua ligação</span> agora mesmo. Aguarde na linha que em instantes você será atendido.
+        </ng-container>
+        <ng-container *ngSwitchCase="'whatsapp'">
+          Você foi redirecionado para o <span>WhatsApp</span>. Caso não tenha aberto automaticamente, clique no botão abaixo.
+        </ng-container>
+        <ng-container *ngSwitchCase="'email'">
+          Você foi redirecionado para o <span>seu cliente de e-mail</span>. Por favor, envie a mensagem para darmos continuidade.
+        </ng-container>
+        <ng-container *ngSwitchDefault>
+          A ação solicitada não foi reconhecida. <span>Retorne à página inicial</span> e tente novamente.
+        </ng-container>
+      </ng-container>
+    </p>
+
+    <div class="contact-info">
+      <div *ngIf="type === 'call'" class="contact-details">
+        <p>
+          <span class="material-icons">schedule</span>
+          Atendimento Iniciado
+        </p>
+        <p>Nossa equipe está preparada para ajudá-lo com qualquer emergência ou dúvida.</p>
+      </div>
+
+      <div *ngIf="type === 'whatsapp'" class="contact-details">
+        <p>
+          <i class="fa-brands fa-whatsapp"></i>
+          Atendimento via WhatsApp
+        </p>
+        <p>Nossa equipe responde rapidamente no WhatsApp. Envie sua mensagem e receba atendimento personalizado.</p>
+      </div>
+
+      <div *ngIf="type === 'email'" class="contact-details">
+        <p>
+          <span class="material-symbols-outlined">mail</span>
+          Envio de E-mail
+        </p>
+        <p>
+          Nossa equipe receberá sua mensagem e retornará o mais breve possível.
+        </p>
+      </div>
+
+      <div *ngIf="type !== 'call' && type !== 'whatsapp' && type !== 'email'" class="contact-details">
+        <p>
+          <span class="material-symbols-outlined">warning</span>
+          Link Inválido
+        </p>
+        <p>Verifique se o link foi digitado corretamente ou volte para a página inicial para acessar nossos serviços.</p>
+      </div>
+    </div>
+
+    <div class="cta-buttons">
+      <ng-container [ngSwitch]="type">
+        <ng-container *ngSwitchCase="'call'">
+          <a href="tel:+5512974020170" class="back-home-btn">
+            <span class="material-icons">call</span>
+            Ligar Novamente
+          </a>
+          <a (click)="goToHome()" class="back-home-btn">
+            <span class="material-icons">home</span>
+            Voltar ao Site
+          </a>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="'whatsapp'">
+          <a href="https://wa.me/5512974020170?text=Olá%20conheci%20sua%20empresa%20pelo%20site,%20pode%20me%20ajudar"
+             target="_blank" class="back-home-btn">
+            <i class="fa-brands fa-whatsapp"></i>
+            Abrir WhatsApp
+          </a>
+          <a (click)="goToHome()" class="back-home-btn">
+            <span class="material-icons">home</span>
+            Voltar ao Site
+          </a>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="'email'">
+          <a href="mailto:seuemail@dominio.com" class="back-home-btn">
+            <span class="material-symbols-outlined">mail</span>
+            Abrir E-mail
+          </a>
+          <a (click)="goToHome()" class="back-home-btn">
+            <span class="material-icons">home</span>
+            Voltar ao Site
+          </a>
+        </ng-container>
+
+        <ng-container *ngSwitchDefault>
+          <a routerLink="/" class="back-home-btn">
+            <span class="material-icons">home</span>
+            Página Inicial
+          </a>
+        </ng-container>
+      </ng-container>
+    </div>
+
+  </div>
+</div>

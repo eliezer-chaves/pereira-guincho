@@ -1,0 +1,254 @@
+#orcamentos {
+  padding: 16px 20px;
+  background: var(--gray-light);
+  color: var(--black);
+}
+
+.orcamento-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+/* cabeçalho */
+.orcamento-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+.orcamento-title {
+  font-weight: 800;
+  font-size: clamp(32px, 4.6vw, 48px);
+  margin-bottom: 6px;
+  line-height: 1;
+}
+.orcamento-title span {
+  color: var(--red);
+}
+.orcamento-subtitle {
+  color: var(--gray-medium);
+  font-size: 20px;
+  line-height: 1.5;
+}
+
+/* grid duas colunas (form + info) */
+.orcamento-grid {
+  display: grid;
+  grid-template-columns: 1fr 480px;
+  gap: 32px;
+  align-items: start;
+}
+
+/* FORM CARD (esquerda) */
+.form-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 28px 28px;
+  box-shadow: 0 18px 40px rgba(11, 20, 29, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.form-title {
+  text-align: center;
+  font-weight: 800;
+  font-size: 20px;
+  margin-bottom: 18px;
+  color: var(--black);
+}
+
+/* form fields */
+.budget-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.field-label {
+  font-size: 16px;
+  color: #333;
+
+  font-weight: 600;
+}
+.budget-form input,
+.budget-form textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid #ececec;
+  background: #fbfbfb;
+  font-size: 14px;
+  color: #333;
+  outline: none;
+  transition: box-shadow 0.15s ease, border-color 0.15s ease;
+}
+.budget-form input:focus,
+.budget-form textarea:focus {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  border-color: rgba(0, 0, 0, 0.08);
+}
+.budget-form textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+/* botão WhatsApp dentro do form (verde largo) */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  border: none;
+}
+.btn-whatsapp {
+  margin-top: 6px;
+  width: 100%;
+  background: #0f9d58;
+  color: #fff;
+  padding: 13px 18px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 15px;
+  box-shadow: 0 8px 22px rgba(37, 211, 102, 0.12);
+  transition: transform 0.14s ease, box-shadow 0.14s ease;
+  display: flex;
+  align-items: center;
+}
+.btn-whatsapp:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(37, 211, 102, 0.14);
+}
+.btn-whatsapp .material-icons {
+  font-size: 24x;
+}
+
+/* INFO COLUMN (direita) */
+.info-column {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* EMERGENCY CARD (vermelho) */
+.emergency-card {
+  background: linear-gradient(180deg, var(--red), var(--red-hover));
+  color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+.emergency-head {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: start;
+}
+.emergency-head .phone-icon {
+  background: rgba(255, 255, 255, 0.09);
+  padding: 8px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.emergency-card h4 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+.emergency-text {
+  color: rgba(255, 255, 255, 0.92);
+  margin: 12px 0 16px;
+  line-height: 1.5;
+}
+
+/* pill telefone dentro do card (caixa clara) */
+.phone-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  padding: 12px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+.phone-pill .material-icons {
+  font-size: 18px;
+}
+
+/* BENEFITS LIST (baixo do card) */
+.benefit-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.benefit-list li {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: start;
+}
+.benefit-icon {
+  min-width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(11, 20, 29, 0.04);
+}
+.benefit-icon .material-icons {
+  font-size: 20px;
+}
+
+.benefit-icon.time {
+  background: var(--red-light);
+  color: var(--white);
+}
+.benefit-icon.place {
+  background: var(--red-light);
+  color: var(--white);
+}
+.benefit-icon.check {
+  background: #0f9d58;
+  color: #eaf8f0;
+}
+
+.benefit-text strong {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #222;
+}
+.benefit-text p {
+  margin: 0;
+  color: var(--gray-medium);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+/* RESPONSIVO */
+@media (max-width: 1100px) {
+  .orcamento-grid {
+    grid-template-columns: 1fr 420px;
+  }
+}
+@media (max-width: 880px) {
+  .orcamento-grid {
+    grid-template-columns: 1fr;
+  }
+  .info-column {
+    order: 2;
+  }
+  .form-card {
+    order: 1;
+  }
+}

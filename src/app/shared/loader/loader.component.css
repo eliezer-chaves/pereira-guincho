@@ -1,0 +1,107 @@
+.page-loader {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.page-loader.fade-out {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader-container {
+  text-align: center;
+  max-width: 400px;
+  padding: 20px;
+}
+
+.loader-content {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 40px 30px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* ===== LOGO E TEXTO ===== */
+.loader-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+.logo-icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #e60000, #cc0000);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: pulse 2s infinite;
+  flex-shrink: 0;
+}
+
+.logo-icon .material-icons {
+  font-size: 30px;
+  color: white;
+}
+
+.logo-text {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* ===== PROGRESSO ===== */
+.progress-container {
+  text-align: center;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: #e0e0e0;
+  border-radius: 50px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #e60000, #ff3333);
+  border-radius: 50px;
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  font-size: 14px;
+  color: #555;
+}
+
+.progress-text .percent {
+  font-weight: 600;
+  color: #e60000;
+  margin-right: 5px;
+}
+
+/* ===== ANIMAÇÃO ===== */
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(230, 0, 0, 0.6);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px 10px rgba(230, 0, 0, 0);
+  }
+}

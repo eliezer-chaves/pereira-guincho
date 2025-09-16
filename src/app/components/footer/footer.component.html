@@ -1,0 +1,35 @@
+<footer class="site-footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <span>{{company}}</span>
+            <p>Guincho 24h em Taubaté. Atendimento rápido, seguro e eficiente em toda a região.</p>
+        </div>
+
+        <div class="footer-nav">
+            <h4>Links Rápidos</h4>
+            <ul>
+                <li><a href="#home">Início</a></li>
+                <li><a href="#avaliacoes">Avaliações</a></li>
+                <li><a href="#orcamentos">Orçamento</a></li>
+                <li><a href="#galeria">Galeria</a></li>
+                <li><a href="#servicos">Serviços Prestados</a></li>
+                <li><a href="#dados-empresariais">Nossa Empresa</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-contact">
+            <h4>Fale Conosco</h4>
+            <p style="cursor: pointer;"><span class="material-icons">call</span> <a (click)="onCallClick()">{{phone}}</a></p>
+            <p style="cursor: pointer;"><span class="material-icons">email</span> <a (click)="onEmailClick()">
+                    {{email}}
+                </a></p>
+            <p><span class="material-icons">schedule</span> Atendimento 24h / 7 dias</p>
+        </div>
+
+
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2025 Auto Socorro Pereira Assistência - Todos os direitos reservados.</p>
+    </div>
+</footer>

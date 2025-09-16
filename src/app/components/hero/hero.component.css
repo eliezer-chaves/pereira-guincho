@@ -1,0 +1,295 @@
+.hero-section {
+  position: relative;
+  height: 100vh;
+  padding: 20px 16px;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  text-align: center;
+  background-image: url("/assets/img/hero.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Camada de sobreposição com filtro claro */
+.hero-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.9); /* Filtro branco claro */
+  z-index: 0;
+}
+
+/* Garantir que o conteúdo fique acima da camada de sobreposição */
+.hero-section > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Tags com glassmorfismo aprimorado */
+.tags-hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 12px;
+}
+
+.glass-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 50px;
+  background: var(--glass-white-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-white-border);
+  color: var(--black);
+  font-weight: 600;
+  font-size: 12px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 32px var(--glass-shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-tag::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--glass-white-bg),
+    transparent
+  );
+  transition: left 0.6s ease;
+}
+
+.glass-tag:hover::before {
+  left: 100%;
+}
+
+.glass-tag:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  background: var(--glass-white-border);
+}
+
+.glass-tag .material-symbols-outlined {
+  font-size: 20px;
+  color: var(--red);
+  font-variation-settings: "FILL" 1, "wght" 500, "GRAD" 0, "opsz" 20;
+}
+
+.location-tag {
+  background: var(--whatsapp-bg-transparent);
+  border-color: var(--whatsapp-border-transparent);
+}
+
+.location-tag:hover {
+  background: var(--whatsapp-border-transparent);
+}
+
+.location-tag .material-symbols-outlined {
+  color: var(--whatsapp);
+}
+
+/* Títulos otimizados para mobile */
+.title-hero {
+  margin-top: 8px;
+}
+
+.title-hero h1 {
+  font-weight: 800;
+  font-size: clamp(32px, 8.5vw, 48px);
+  line-height: 1.1;
+  margin-bottom: 8px;
+  color: var(--black);
+}
+
+.title-hero h1 span {
+  color: var(--red);
+}
+
+.title-hero > span {
+  display: block;
+  font-weight: 800;
+  font-size: clamp(28px, 7.5vw, 42px);
+  color: var(--red);
+  line-height: 1.1;
+}
+
+.subtitle-hero {
+  color: var(--gray-medium);
+  font-size: clamp(16px, 4.2vw, 20px);
+  line-height: 1.4;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.subtitle-hero span {
+  color: var(--black);
+  font-weight: 700;
+}
+
+/* Botões CTA otimizados */
+.cta-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  max-width: 320px;
+  margin-top: 8px;
+}
+
+.cta-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px 24px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--white);
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--glass-white-border),
+    transparent
+  );
+  transition: left 0.6s ease;
+}
+
+.cta-btn:hover::before {
+  left: 100%;
+}
+
+.call-btn {
+  background: linear-gradient(135deg, var(--red) 0%, var(--red-hover) 100%);
+  box-shadow: 0 4px 20px var(--red-shadow-transparent);
+}
+
+.call-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px var(--red-shadow-transparent);
+}
+
+.whatsapp-btn {
+  background: linear-gradient(
+    135deg,
+    var(--whatsapp) 0%,
+    var(--whatsapp-hover) 100%
+  );
+  box-shadow: 0 4px 20px var(--whatsapp-shadow-transparent);
+}
+
+.whatsapp-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px var(--whatsapp-shadow-transparent);
+}
+
+/* Alert aprimorado */
+.alert {
+  background: var(--red-bg-transparent);
+  border: 1px solid var(--red-border-transparent);
+  border-radius: 16px;
+  padding: 20px;
+  max-width: 380px;
+  width: 100%;
+  backdrop-filter: blur(10px);
+}
+
+.alert-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  color: var(--red);
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.alert-message {
+  color: var(--gray-medium);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+@media (min-width: 768px) {
+  .hero-section {
+    padding: 40px 20px;
+    gap: 32px;
+  }
+
+  .cta-buttons {
+    flex-direction: row;
+    max-width: 500px;
+  }
+
+  .cta-btn {
+    flex: 1;
+    font-size: 18px;
+    padding: 18px 28px;
+  }
+
+  .glass-tag {
+    padding: 14px 24px;
+    font-size: 15px;
+  }
+
+  .alert {
+    max-width: 500px;
+    padding: 24px;
+  }
+}
+
+@media (max-width: 375px) {
+  .hero-section {
+    padding: 16px 12px;
+    gap: 20px;
+  }
+
+  .glass-tag {
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+
+  .cta-btn {
+    padding: 14px 20px;
+    font-size: 15px;
+  }
+
+  .alert {
+    padding: 16px;
+  }
+}
