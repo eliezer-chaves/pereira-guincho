@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ObrigadoService } from '../../helpers/obrigado.service';
 import { Router } from '@angular/router';
 import { handleCallClick } from '../../helpers/contact.utils';
+import { ClickCtaService } from '../../helpers/tracker.service';
 
 @Component({
   selector: 'app-diferenciais',
@@ -10,9 +11,12 @@ import { handleCallClick } from '../../helpers/contact.utils';
   styleUrl: './diferenciais.component.css'
 })
 export class DiferenciaisComponent {
-  constructor(private router: Router, private obrigadoService: ObrigadoService) { }
+  constructor(private router: Router, private obrigadoService: ObrigadoService, private clickCTA: ClickCtaService) { }
+
 
   onCallClick() {
-    handleCallClick(this.router, this.obrigadoService);
+    handleCallClick(this.router, this.obrigadoService)
+    this.clickCTA.registerClick('call', 'services-section')
+      ;
   }
 }

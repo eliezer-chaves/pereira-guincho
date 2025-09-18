@@ -4,6 +4,7 @@ import { handleCallClick, handleWhatsAppClick } from '../../helpers/contact.util
 import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
 import { ObrigadoService } from '../../helpers/obrigado.service';
+import { ClickCtaService } from '../../helpers/tracker.service';
 
 @Component({
   selector: 'app-hero',
@@ -12,14 +13,18 @@ import { ObrigadoService } from '../../helpers/obrigado.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeroComponent {
-  constructor(private router: Router, private obrigadoService: ObrigadoService) { }
+  constructor(private router: Router, private obrigadoService: ObrigadoService, private clickCTA: ClickCtaService) { }
 
   onWhatsappClick() {
     handleWhatsAppClick(this.router, this.obrigadoService);
+    this.clickCTA.registerClick('whatsapp', 'hero-banner').subscribe();
+
+
   }
 
   onCallClick() {
     handleCallClick(this.router, this.obrigadoService);
+    this.clickCTA.registerClick('call', 'hero-banner').subscribe();
   }
 
 }
