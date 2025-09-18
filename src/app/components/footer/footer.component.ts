@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
 import { handleWhatsAppClick, handleCallClick, handleEmailClick } from '../../helpers/contact.utils';
 import { ObrigadoService } from '../../helpers/obrigado.service';
+import { ClickCtaService } from '../../helpers/tracker.service';
 
 @Component({
   selector: 'app-footer',
@@ -16,17 +17,22 @@ export class FooterComponent {
   phone: string = environment.phoneNumber
   email: string = environment.email
 
-  constructor(private router: Router, private obrigadoService: ObrigadoService) { }
+  constructor(private router: Router, private obrigadoService: ObrigadoService, private clickCTA: ClickCtaService) { }
 
   onWhatsappClick() {
     handleWhatsAppClick(this.router, this.obrigadoService);
+    this.clickCTA.registerClick('whatsapp', 'dados-empresarias').subscribe()
+
   }
 
   onCallClick() {
     handleCallClick(this.router, this.obrigadoService);
-  }
+    this.clickCTA.registerClick('call', 'dados-empresarias').subscribe()
 
-  onEmailClick(){
+  }
+  onEmailClick() {
     handleEmailClick(this.router, this.obrigadoService);
+        this.clickCTA.registerClick('email', 'dados-empresarias').subscribe()
+
   }
 }

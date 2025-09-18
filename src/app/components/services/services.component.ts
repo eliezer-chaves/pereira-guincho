@@ -15,12 +15,11 @@ export class ServicesComponent {
 
   onWhatsappClick() {
     handleWhatsAppClick(this.router, this.obrigadoService);
-    this.clickCTA.registerClick('whatsapp', 'services-section')
+    this.clickCTA.registerClick('whatsapp', 'services-section').subscribe()
   }
 
   onCallClick() {
     handleCallClick(this.router, this.obrigadoService)
-    this.clickCTA.registerClick('call', 'services-section')
-      ;
+    this.clickCTA.registerClick('call', 'services-section').subscribe();
   }
 }

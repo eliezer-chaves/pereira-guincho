@@ -15,6 +15,6 @@ export class FloatingButtonComponent {
 
   onWhatsappClick() {
     handleWhatsAppClick(this.router, this.obrigadoService);
-    this.clickCta.registerClick('floatingWPP', 'floating')
+    this.clickCta.registerClick('floatingWPP', 'floating').subscribe()
   }
 }

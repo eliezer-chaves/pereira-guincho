@@ -18,7 +18,7 @@ export class OrcamentosComponent {
 
   onCallClick() {
     handleCallClick(this.router, this.obrigadoService);
-    this.clickCTA.registerClick('call', 'orcamentos')
+    this.clickCTA.registerClick('call', 'orcamentos').subscribe()
   }
 
   // A função agora recebe o formulário como parâmetro
@@ -28,7 +28,7 @@ export class OrcamentosComponent {
       
       // Chama a função de helper com os dados do formulário e os serviços
       handleBudgetFormSubmit(formData, this.router, this.obrigadoService);
-      this.clickCTA.registerClick('form', 'orcamentos')
+      this.clickCTA.registerClick('form', 'orcamentos').subscribe()
     }
   }
 }

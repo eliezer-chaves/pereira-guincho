@@ -16,7 +16,7 @@ export class ClickCtaService {
    * @param section Seção da página onde o clique ocorreu
    */
   registerClick(
-    type: 'whatsapp' | 'call' | 'floatingWPP' | 'form',
+    type: 'whatsapp' | 'call' | 'floatingWPP' | 'form' | 'email',
     section: string
   ) {
     const now = new Date();
