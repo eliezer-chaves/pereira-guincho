@@ -8,7 +8,7 @@ export class ClickCtaService {
 
   // Para desenvolvimento local, use localhost:8000
   // Para produção, use o domínio real
-  private baseUrl = 'http://localhost:8000/api'; // 👈 MUDE AQUI
+  private baseUrl = 'https://www.pereiraguinchotaubate.com.br/api'; // 👈 MUDE AQUI
   private apiUrl = `${this.baseUrl}/clicks-cta`;
   private registerTimeUrl = `${this.baseUrl}/clicks-cta-timer`; // URL para registro de tempo
 

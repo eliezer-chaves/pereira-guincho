@@ -3,61 +3,50 @@
 // Ele substitui o index.html original
 
 $request_uri = $_SERVER['REQUEST_URI'] ?? '';
+$clean_uri   = strtok($request_uri, '?'); // Remove query string
 
-// Se a URL começar com /api/, executa o Laravel
+// Caminho para o Laravel (uma pasta acima de public_html)
+$laravel_path = $_SERVER['DOCUMENT_ROOT'] . '/../click-tracker/public/index.php';
+
+/**
+ * Função auxiliar para despachar requisições para o Laravel
+ */
+function runLaravel($laravel_path, $path_info) {
+    $_SERVER['SCRIPT_NAME'] = '/index.php';
+    $_SERVER['PATH_INFO']   = $path_info;
+
+    if (file_exists($laravel_path)) {
+        include $laravel_path;
+        exit;
+    } else {
+        http_response_code(500);
+        echo 'Laravel não encontrado em ' . htmlspecialchars($laravel_path);
+        exit;
+    }
+}
+
+// 1. Se a URL começar com /api/, executa o Laravel
 if (strpos($request_uri, '/api/') === 0) {
     header('Content-Type: application/json');
     header('Access-Control-Allow-Origin: *');
 
-    // Configura variáveis para o Laravel
-    $_SERVER['SCRIPT_NAME'] = '/index.php';
-    $_SERVER['PATH_INFO'] = str_replace('/api', '', $request_uri);
-
-
-    // Caminho para o Laravel (uma pasta acima de public_html)
-    $laravel_path = $_SERVER['DOCUMENT_ROOT'] . '/../click-tracker/public/index.php';
-
-    if (file_exists($laravel_path)) {
-        // Captura a saída do Laravel
-        ob_start();
-        include $laravel_path;
-        $output = ob_get_clean();
-
-        // Se o Laravel retornou algo, mostra o JSON
-        if (!empty($output)) {
-            echo $output;
-        } else {
-            // Se Laravel não retornou nada, provavelmente é 404
-            http_response_code(404);
-            echo json_encode([
-                'error' => 'Endpoint not found',
-                'message' => 'The requested API endpoint does not exist',
-                'status' => 404
-            ]);
-        }
-    } else {
-        // Erro se não encontrar o Laravel
-        http_response_code(500);
-        echo json_encode([
-            'error' => 'API service unavailable',
-            'message' => 'The API service is temporarily unavailable',
-            'status' => 500
-        ]);
-    }
-    exit;
+    $path_info = str_replace('/api', '', $request_uri);
+    runLaravel($laravel_path, $path_info);
 }
 
-// Lista de rotas válidas do Angular
+// 2. Se a URL for /log-viewer, também vai para o Laravel
+if (strpos($clean_uri, '/log-viewer') === 0) {
+    runLaravel($laravel_path, $clean_uri);
+}
+
+// 3. Lista de rotas válidas do Angular
 $valid_angular_routes = [
     '/',
     '/obrigado'
     // Adicione aqui outras rotas do seu Angular conforme necessário
 ];
 
-// Remove query string para verificação
-$clean_uri = strtok($request_uri, '?');
-
-// Se for uma rota Angular válida, serve o Angular
+// 4. Se for uma rota Angular válida, serve o Angular
 if (in_array($clean_uri, $valid_angular_routes)) {
     $angular_file = __DIR__ . '/index.html';
 
@@ -72,7 +61,7 @@ if (in_array($clean_uri, $valid_angular_routes)) {
     exit;
 }
 
-// Se chegou aqui, é uma rota não encontrada - serve a página 404.html
+// 5. Se chegou aqui, é uma rota não encontrada - serve a página 404.html
 $page_404 = __DIR__ . '/404.html';
 
 if (file_exists($page_404)) {
@@ -87,4 +76,3 @@ if (file_exists($page_404)) {
     echo '<p><a href="/">Voltar ao início</a></p>';
     echo '</body></html>';
 }
-?>
