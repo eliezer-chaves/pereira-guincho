@@ -16,15 +16,19 @@ export class HeroComponent {
   constructor(private router: Router, private obrigadoService: ObrigadoService, private clickCTA: ClickCtaService) { }
 
   onWhatsappClick() {
+    const uuid = localStorage.getItem('session_uuid')
+
     handleWhatsAppClick(this.router, this.obrigadoService);
-    this.clickCTA.registerClick('whatsapp', 'hero-banner').subscribe();
+    this.clickCTA.registerClick('whatsapp', 'hero-banner', uuid).subscribe();
 
 
   }
 
   onCallClick() {
+    const uuid = localStorage.getItem('session_uuid')
+
     handleCallClick(this.router, this.obrigadoService);
-    this.clickCTA.registerClick('call', 'hero-banner').subscribe();
+    this.clickCTA.registerClick('call', 'hero-banner', uuid).subscribe();
   }
 
 }

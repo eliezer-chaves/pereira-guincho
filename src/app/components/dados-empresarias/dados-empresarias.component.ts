@@ -32,19 +32,25 @@ export class DadosEmpresariasComponent {
   constructor(private router: Router, private obrigadoService: ObrigadoService, private clickCTA: ClickCtaService) { }
 
   onWhatsappClick() {
+    const uuid = localStorage.getItem('session_uuid')
+
     handleWhatsAppClick(this.router, this.obrigadoService);
-    this.clickCTA.registerClick('whatsapp', 'dados-empresarias').subscribe()
+    this.clickCTA.registerClick('whatsapp', 'dados-empresarias', uuid).subscribe()
 
   }
 
   onCallClick() {
+    const uuid = localStorage.getItem('session_uuid')
+
     handleCallClick(this.router, this.obrigadoService);
-    this.clickCTA.registerClick('call', 'dados-empresarias').subscribe()
+    this.clickCTA.registerClick('call', 'dados-empresarias', uuid).subscribe()
 
   }
   onEmailClick() {
+    const uuid = localStorage.getItem('session_uuid')
+
     handleEmailClick(this.router, this.obrigadoService);
-        this.clickCTA.registerClick('email', 'dados-empresarias').subscribe()
+    this.clickCTA.registerClick('email', 'dados-empresarias', uuid).subscribe()
 
   }
 }

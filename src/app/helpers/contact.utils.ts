@@ -12,6 +12,17 @@ export function handleWhatsAppClick(router: Router, obrigadoService: ObrigadoSer
   }, environment.delayRedirect);
 }
 
+export function handleMapsClick(router: Router, obrigadoService: ObrigadoService) {
+  const targetUrl = 'https://maps.app.goo.gl/g7H2EayynyVw6iVM9';
+  window.open(targetUrl, '_blank');
+
+  setTimeout(() => {
+    obrigadoService.setType('maps-review');
+    //router.navigate(['/obrigado']);
+  }, environment.delayRedirect);
+}
+
+
 export function handleCallClick(router: Router, obrigadoService: ObrigadoService) {
   const targetUrl = environment.callUrl;
   window.open(targetUrl, '_blank');

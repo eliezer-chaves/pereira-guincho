@@ -11,10 +11,20 @@ import { ClickCtaService } from '../../helpers/tracker.service';
   styleUrl: './floating-button.component.css'
 })
 export class FloatingButtonComponent {
-  constructor(private router: Router, private obrigadoService: ObrigadoService, private clickCta: ClickCtaService) { }
+  constructor(
+    private router: Router,
+    private obrigadoService: ObrigadoService,
+    private clickCta: ClickCtaService
+  ) { }
 
   onWhatsappClick() {
-    handleWhatsAppClick(this.router, this.obrigadoService);
-    this.clickCta.registerClick('floatingWPP', 'floating').subscribe()
+    // Recupera o UUID salvo no localStorage
+    const uuid = localStorage.getItem('session_uuid')
+
+    handleWhatsAppClick(this.router, this.obrigadoService)
+
+
+    this.clickCta.registerClick('floatingWPP', 'floating', uuid).subscribe()
+
   }
 }

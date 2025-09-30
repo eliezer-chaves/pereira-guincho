@@ -14,12 +14,16 @@ export class ServicesComponent {
   constructor(private router: Router, private obrigadoService: ObrigadoService, private clickCTA: ClickCtaService) { }
 
   onWhatsappClick() {
+    const uuid = localStorage.getItem('session_uuid')
+
     handleWhatsAppClick(this.router, this.obrigadoService);
-    this.clickCTA.registerClick('whatsapp', 'services-section').subscribe()
+    this.clickCTA.registerClick('whatsapp', 'services-section', uuid).subscribe()
   }
 
   onCallClick() {
+    const uuid = localStorage.getItem('session_uuid')
+
     handleCallClick(this.router, this.obrigadoService)
-    this.clickCTA.registerClick('call', 'services-section').subscribe();
+    this.clickCTA.registerClick('call', 'services-section', uuid).subscribe();
   }
 }

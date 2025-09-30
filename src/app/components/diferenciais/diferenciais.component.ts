@@ -15,8 +15,10 @@ export class DiferenciaisComponent {
 
 
   onCallClick() {
+    const uuid = localStorage.getItem('session_uuid')
+
     handleCallClick(this.router, this.obrigadoService)
-    this.clickCTA.registerClick('call', 'services-section')
+    this.clickCTA.registerClick('call', 'services-section', uuid).subscribe()
       ;
   }
 }
