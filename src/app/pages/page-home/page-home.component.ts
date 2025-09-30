@@ -40,7 +40,6 @@ export class PageHomeComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.initialTime = new Date();
 
-
     this.uuid = this.generateRandomId();
     localStorage.setItem('session_uuid', this.uuid);
 
