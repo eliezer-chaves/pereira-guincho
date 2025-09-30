@@ -13,6 +13,7 @@ Route::get('/ping', function () {
 Route::post('/create-session', [ClickCtaController::class, 'createSession']);
 Route::post('/clicks-cta', [ClickCtaController::class, 'store']);
 Route::post('/clicks-cta-timer', [ClickCtaController::class, 'storeTimer']);
+Route::get('/total', [ClickCtaController::class, 'totalResumo']);
 
 // FALLBACK - deve ser a última rota
 Route::fallback(function () {

@@ -18,7 +18,7 @@ export function handleMapsClick(router: Router, obrigadoService: ObrigadoService
 
   setTimeout(() => {
     obrigadoService.setType('maps-review');
-    //router.navigate(['/obrigado']);
+    router.navigate(['/obrigado']);
   }, environment.delayRedirect);
 }
 

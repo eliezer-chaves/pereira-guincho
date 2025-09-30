@@ -170,4 +170,97 @@ class ClickCtaController extends Controller
 
     return response()->json(['message' => 'Tempo de sessão registrado com sucesso!', 'data' => $session], 200);
 }
+
+public function totalResumo()
+{
+    $sessions = SessionTracker::all();
+
+    if ($sessions->isEmpty()) {
+        return response()->json([
+            'resumo_sessao' => [
+                "📊 Total de Sessões" => 0,
+                "🎯 Total de Cliques" => 0,
+                "💚 Taxa de Conversão" => "0%",
+                "⏱️ Duração Média" => "00:00:00",
+                "📞 Ações Realizadas" => [
+                    'whatsapp' => 0,
+                    'call' => 0,
+                    'form' => 0,
+                    'email' => 0,
+                    'maps-review' => 0,
+                ],
+                "📍 Seções Mais Cliques" => []
+            ]
+        ], 200);
+    }
+
+    $totalSessoes = $sessions->count();
+    $totalCliques = $sessions->where('clicou', true)->count();
+    $taxaConversao = $totalSessoes > 0 ? round(($totalCliques / $totalSessoes) * 100, 2) : 0;
+
+    // Calcular duração média (somente sessões com time válido)
+    $duracoesSegundos = $sessions->filter(function ($s) {
+        return !empty($s->time);
+    })->map(function ($s) {
+        if (str_contains($s->time, ":")) {
+            [$h, $m, $s_] = array_pad(explode(":", $s->time), 3, 0);
+            return ((int) $h * 3600) + ((int) $m * 60) + (int) $s_;
+        }
+        if (str_ends_with($s->time, "s")) {
+            return (int) str_replace("s", "", $s->time);
+        }
+        return (int) $s->time;
+    });
+
+    $mediaSegundos = $duracoesSegundos->isNotEmpty() ? $duracoesSegundos->avg() : 0;
+    $duracaoMedia = gmdate("H:i:s", (int) $mediaSegundos);
+
+    // Inicializar todos os tipos possíveis (sem floatingWPP)
+    $acoes = [
+        'whatsapp' => 0,
+        'call' => 0,
+        'form' => 0,
+        'email' => 0,
+        'maps-review' => 0,
+    ];
+
+    // Contar seções
+    $secoes = [];
+
+    foreach ($sessions as $s) {
+        if ($s->clicou && is_array($s->info)) {
+            $tipo = strtolower($s->info['type'] ?? '');
+
+            // floatingWPP conta como whatsapp
+            if ($tipo === 'floatingwpp') {
+                $tipo = 'whatsapp';
+            }
+
+            if (array_key_exists($tipo, $acoes)) {
+                $acoes[$tipo]++;
+            }
+
+            $secao = $s->info['section'] ?? 'N/A';
+            if (!isset($secoes[$secao])) {
+                $secoes[$secao] = 0;
+            }
+            $secoes[$secao]++;
+        }
+    }
+
+    return response()->json([
+        'resumo_sessao' => [
+            "📊 Total de Sessões" => $totalSessoes,
+            "🎯 Total de Cliques" => $totalCliques,
+            "💚 Taxa de Conversão" => $taxaConversao . "%",
+            "⏱️ Duração Média" => $duracaoMedia,
+            "📞 Ações Realizadas" => $acoes,
+            "📍 Seções Mais Cliques" => $secoes
+        ]
+    ], 200);
+}
+
+
+
+
 }

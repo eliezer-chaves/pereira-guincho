@@ -6,6 +6,7 @@
         <span *ngSwitchCase="'call'" class="material-symbols-outlined success-icon">call</span>
         <i *ngSwitchCase="'whatsapp'" class="fa-brands fa-whatsapp success-icon"></i>
         <span *ngSwitchCase="'email'" class="material-symbols-outlined success-icon">mail</span>
+        <span *ngSwitchCase="'maps-review'" class="material-symbols-outlined success-icon">rate_review</span>
         <span *ngSwitchDefault class="material-symbols-outlined success-icon">info</span>
       </ng-container>
     </div>
@@ -20,6 +21,9 @@
         </ng-container>
         <ng-container *ngSwitchCase="'email'">
           E-mail <span>Enviado</span>
+        </ng-container>
+        <ng-container *ngSwitchCase="'maps-review'">
+          Avaliação no <span>Google Maps</span>
         </ng-container>
         <ng-container *ngSwitchDefault>
           Página <span>Não Encontrada</span>
@@ -37,6 +41,9 @@
         </ng-container>
         <ng-container *ngSwitchCase="'email'">
           Você foi redirecionado para o <span>seu cliente de e-mail</span>. Por favor, envie a mensagem para darmos continuidade.
+        </ng-container>
+        <ng-container *ngSwitchCase="'maps-review'">
+          Você foi redirecionado para deixar uma <span>avaliação no Google Maps</span>. Sua opinião é muito importante para nós!
         </ng-container>
         <ng-container *ngSwitchDefault>
           A ação solicitada não foi reconhecida. <span>Retorne à página inicial</span> e tente novamente.
@@ -71,7 +78,15 @@
         </p>
       </div>
 
-      <div *ngIf="type !== 'call' && type !== 'whatsapp' && type !== 'email'" class="contact-details">
+      <div *ngIf="type === 'maps-review'" class="contact-details">
+        <p>
+          <span class="material-symbols-outlined">star_rate</span>
+          Avaliação no Google Maps
+        </p>
+        <p>Compartilhe sua experiência e ajude outras pessoas a conhecerem melhor nossos serviços.</p>
+      </div>
+
+      <div *ngIf="type !== 'call' && type !== 'whatsapp' && type !== 'email' && type !== 'maps-review'" class="contact-details">
         <p>
           <span class="material-symbols-outlined">warning</span>
           Link Inválido
@@ -109,6 +124,18 @@
           <a href="mailto:seuemail@dominio.com" class="back-home-btn">
             <span class="material-symbols-outlined">mail</span>
             Abrir E-mail
+          </a>
+          <a (click)="goToHome()" class="back-home-btn">
+            <span class="material-icons">home</span>
+            Voltar ao Site
+          </a>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="'maps-review'">
+          <a href="https://g.page/r/CfkJaqPw00IkEAI/review"
+             target="_blank" class="back-home-btn">
+            <span class="material-symbols-outlined">rate_review</span>
+            Deixar Avaliação
           </a>
           <a (click)="goToHome()" class="back-home-btn">
             <span class="material-icons">home</span>
