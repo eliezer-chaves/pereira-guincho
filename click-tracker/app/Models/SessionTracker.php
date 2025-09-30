@@ -21,8 +21,8 @@ class SessionTracker extends Model
     ];
 
     protected $casts = [
-        'initialTime' => 'date',
-        'lastTime' => 'date',
+        'initialTime' => 'datetime',
+        'lastTime' => 'datetime',
         'clicou' => 'boolean',
         'info' => 'array',
     ];

@@ -113,57 +113,61 @@ class ClickCtaController extends Controller
         return response()->json(['message' => 'Clique registrado com sucesso!', 'data' => $session], 200);
     }
 
-    public function storeTimer(Request $request)
-    {
-        $data = json_decode($request->getContent(), true) ?? $request->all();
-        $uuid = $data['uuid'] ?? 'N/A';
+   public function storeTimer(Request $request)
+{
+    $data = json_decode($request->getContent(), true) ?? $request->all();
+    $uuid = $data['uuid'] ?? 'N/A';
 
-        $session = SessionTracker::where('uuid', $uuid)->first();
-        if (!$session) {
-            Log::warning("⚠️  ENCERRAMENTO - SESSAO NAO ENCONTRADA", [
-                '🔑 UUID' => $uuid,
-                '📅 Timestamp' => now()->setTimezone('America/Sao_Paulo')->format('d/m/Y H:i:s')
-            ]);
-            return response()->json(['message' => 'Sessão não encontrada.'], 200);
-        }
-
-        $lastTime = Carbon::parse($data['lastTime'])->setTimezone('America/Sao_Paulo');
-        $session->lastTime = $lastTime;
-        $session->time = $data['time'] ?? '0s';
-        $session->save();
-
-        // Recuperar informações do clique para o log final
-        $infoClique = $session->info ?? [];
-        $tipoAcao = $infoClique['type'] ?? 'desconhecido';
-        
-        $emojiTipo = match($tipoAcao) {
-            'whatsapp' => '💚 WhatsApp',
-            'phone' => '📞 Telefone',
-            'email' => '📧 Email',
-            'form' => '📝 Formulário',
-            'link' => '🔗 Link',
-            default => '🎯 Desconhecido'
-        };
-
-        // LOG final detalhado
-        Log::info("🔚  SESSAO FINALIZADA", [
-            '🔑 UUID' => $session->uuid,
-            '🆔 Session ID' => $session->id,
-            '🎯 Conversão' => $session->clicou ? '✅ SIM' : '❌ NÃO',
-            '📊 Tipo de Ação' => $session->clicou ? $emojiTipo : 'Nenhuma',
-            '📍 Seção' => $session->clicou ? ($infoClique['section'] ?? 'N/A') : 'N/A',
-            '⏰ Entrada' => $session->initialTime->format('d/m/Y H:i:s'),
-            '⏰ Saída' => $lastTime->format('d/m/Y H:i:s'),
-            '⏱️ Duração' => $session->time,
-            '📈 Resumo' => [
-                'Tempo na Página' => $session->time,
-                'Ação Realizada' => $session->clicou ? $tipoAcao : 'Nenhuma',
-                'Status Final' => $session->clicou ? 'Sucesso - Conversão' : 'Sem Conversão',
-                'Seção do Clique' => $session->clicou ? ($infoClique['section'] ?? 'N/A') : 'N/A'
-            ],
+    $session = SessionTracker::where('uuid', $uuid)->first();
+    if (!$session) {
+        Log::warning("⚠️  ENCERRAMENTO - SESSAO NAO ENCONTRADA", [
+            '🔑 UUID' => $uuid,
             '📅 Timestamp' => now()->setTimezone('America/Sao_Paulo')->format('d/m/Y H:i:s')
         ]);
-
-        return response()->json(['message' => 'Tempo de sessão registrado com sucesso!', 'data' => $session], 200);
+        return response()->json(['message' => 'Sessão não encontrada.'], 200);
     }
+
+    $lastTime = Carbon::parse($data['lastTime'])->setTimezone('America/Sao_Paulo');
+    $session->lastTime = $lastTime;
+    $session->time = $data['time'] ?? '0s';
+    $session->save();
+
+    // Recuperar informações do clique para o log final
+    $infoClique = $session->info ?? [];
+    $tipoAcao = $infoClique['type'] ?? 'desconhecido';
+    
+    $emojiTipo = match($tipoAcao) {
+        'whatsapp' => '💚 WhatsApp',
+        'phone' => '📞 Telefone',
+        'email' => '📧 Email',
+        'form' => '📝 Formulário',
+        'link' => '🔗 Link',
+        default => '🎯 Desconhecido'
+    };
+
+    // USAR initialTime DO BANCO (já salvo corretamente)
+    $horaEntrada = $session->initialTime->format('d/m/Y H:i:s');
+    $horaSaida = $lastTime->format('d/m/Y H:i:s');
+
+    // LOG final detalhado
+    Log::info("🔚  SESSAO FINALIZADA", [
+        '🔑 UUID' => $session->uuid,
+        '🆔 Session ID' => $session->id,
+        '🎯 Conversão' => $session->clicou ? '✅ SIM' : '❌ NÃO',
+        '📊 Tipo de Ação' => $session->clicou ? $emojiTipo : 'Nenhuma',
+        '📍 Seção' => $session->clicou ? ($infoClique['section'] ?? 'N/A') : 'N/A',
+        '⏰ Entrada' => $horaEntrada, // ← Agora do banco
+        '⏰ Saída' => $horaSaida,
+        '⏱️ Duração' => $session->time,
+        '📈 Resumo' => [
+            'Tempo na Página' => $session->time,
+            'Ação Realizada' => $session->clicou ? $tipoAcao : 'Nenhuma',
+            'Status Final' => $session->clicou ? 'Sucesso - Conversão' : 'Sem Conversão',
+            'Seção do Clique' => $session->clicou ? ($infoClique['section'] ?? 'N/A') : 'N/A'
+        ],
+        '📅 Timestamp' => now()->setTimezone('America/Sao_Paulo')->format('d/m/Y H:i:s')
+    ]);
+
+    return response()->json(['message' => 'Tempo de sessão registrado com sucesso!', 'data' => $session], 200);
+}
 }
