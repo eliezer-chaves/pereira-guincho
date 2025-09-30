@@ -15,27 +15,121 @@ export class ClickCtaService {
   constructor(private http: HttpClient) { }
 
   /**
-    * Cria um registro inicial de sessão quando o usuário entra na página
-    */
+   * Coleta dados completos do visitante
+   */
+  private collectVisitorData() {
+    const screen = window.screen;
+    const connection = (navigator as any).connection;
+    const deviceMemory = (navigator as any).deviceMemory;
+    const hardwareConcurrency = navigator.hardwareConcurrency;
+
+    return {
+      // Dados do navegador
+      userAgent: navigator.userAgent,
+      language: navigator.language,
+      languages: navigator.languages,
+      timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+
+      // Dados de tela
+      screen: {
+        width: screen.width,
+        height: screen.height,
+        colorDepth: screen.colorDepth,
+        pixelDepth: screen.pixelDepth,
+        availWidth: screen.availWidth,
+        availHeight: screen.availHeight
+      },
+
+      // Dados do viewport
+      viewport: {
+        width: window.innerWidth,
+        height: window.innerHeight
+      },
+
+      // Dados de performance
+      performance: {
+        memory: (performance as any).memory ? {
+          usedJSHeapSize: (performance as any).memory.usedJSHeapSize,
+          totalJSHeapSize: (performance as any).memory.totalJSHeapSize,
+          jsHeapSizeLimit: (performance as any).memory.jsHeapSizeLimit
+        } : null,
+        timing: performance.timing ? {
+          navigationStart: performance.timing.navigationStart,
+          loadEventEnd: performance.timing.loadEventEnd
+        } : null
+      },
+
+      // Dados de conexão
+      connection: connection ? {
+        effectiveType: connection.effectiveType,
+        downlink: connection.downlink,
+        rtt: connection.rtt,
+        saveData: connection.saveData
+      } : null,
+
+      // Dados de hardware
+      hardware: {
+        deviceMemory: deviceMemory,
+        hardwareConcurrency: hardwareConcurrency,
+        maxTouchPoints: navigator.maxTouchPoints
+      },
+
+      // Dados do dispositivo
+      device: {
+        platform: navigator.platform,
+        vendor: navigator.vendor,
+        cookieEnabled: navigator.cookieEnabled,
+        doNotTrack: navigator.doNotTrack,
+        pdfViewerEnabled: navigator.pdfViewerEnabled
+      },
+
+      // Dados da sessão
+      session: {
+        referrer: document.referrer || 'direct',
+        url: window.location.href,
+        hostname: window.location.hostname,
+        pathname: window.location.pathname,
+        search: window.location.search,
+        hash: window.location.hash
+      },
+
+      // Dados de geolocalização (se disponível)
+      geolocation: {
+        // Será preenchido posteriormente se o usuário permitir
+      },
+
+      // Timestamp
+      timestamp: new Date().toISOString()
+    };
+  }
+
+
+  /**
+   * Cria um registro inicial de sessão com dados completos do visitante
+   */
   createSession(uuid: string, initialTime: Date) {
+    const visitorData = this.collectVisitorData();
+
     const payload = {
       uuid: uuid,
-      initialTime: initialTime
+      initialTime: initialTime,
+      visitor_data: visitorData,
+      ip_data: {} // Será preenchido no backend
     };
 
     return this.http.post(`${this.baseUrl}/create-session`, payload);
   }
 
   /**
-   * Registra o clique no backend
-   */
+  * Registra o clique no backend
+  */
   registerClick(
     type: 'whatsapp' | 'call' | 'floatingWPP' | 'form' | 'email' | 'maps-review',
     section: string,
     uuid: any
   ) {
     const now = new Date();
-    // ... sua lógica de formatação e payload aqui ...
+    const visitorData = this.collectVisitorData();
 
     const datetime = now.getFullYear() + '-' +
       String(now.getMonth() + 1).padStart(2, '0') + '-' +
@@ -51,10 +145,7 @@ export class ClickCtaService {
         type: type,
         section: section,
         datetime: now.toISOString(),
-        userAgent: navigator.userAgent,
-        language: navigator.language,
-        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-        referrer: document.referrer || 'direct'
+        visitor_data: visitorData
       })
     };
 
